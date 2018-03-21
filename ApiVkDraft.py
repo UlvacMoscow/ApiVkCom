@@ -4,7 +4,7 @@ import requests
 import json
 import os
 
-APP_ID = 6417385
+APP_ID = 
 AUTH_URL ='https://oauth.vk.com/authorize'
 
 auth_data = {
@@ -18,7 +18,7 @@ auth_data = {
 
 # print('?'.join((AUTH_URL, urlencode(auth_data))))
 
-TOKEN = '4026506e0ed143175146a5bfd3d4da192e8c36300f80888eb53c68ded54b22f079075d4e377e0dadf679e'
+TOKEN = '4026506e0ed143175146a588eb53c68ded54b22f079075d4e377e0dadf679e'
 
 params = {
     'access_token' : TOKEN,
