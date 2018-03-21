@@ -1,29 +1,23 @@
-from pprint import pprint
-from urllib.parse import urlencode
 import requests
-
-APP_ID = 6417385
-AUTH_URL ='https://oauth.vk.com/authorize'
-
-auth_data = {
-    'client_id' : APP_ID,
-    'display' : 'mobile',
-    'scope' : 'friends, status',
-    'response_type' : 'token',
-    'v' : '5.73'
-}
+import json
 
 
-# print('?'.join((AUTH_URL, urlencode(auth_data))))
+token_source_user = input("type token")
+first_user = input("type the id first user ")
+second_user = input("type the id second user ")
 
-TOKEN = '81a544d5640cd70f4e1c5442a8668ac48cde19954046db34121196c41f5a62f0cfd8fdef1150734c7c77c'
 
-params = {
-    'access_token' : TOKEN,
-    'v' : '5.73'
-}
+def mutual_friend(first_id, second_id, TOKEN):
+    params = {'access_token': TOKEN, 'v': '5.73', 'source_uid': first_id, 'target_uid': second_id}
+    response_friends = requests.get('https://api.vk.com/method/friends.getMutual', params)
+    friends_link = json.loads(response_friends.text)
+    link_vk = 'https://vk.com/id'
+    for user_id in friends_link['response']:
+        print('id user = {}'.format(user_id))
+        print(link_vk + str(user_id))
 
-response = requests.get('https://api.vk.com/method/status.get', params)
 
-pprint(response.text)
+mutual_friend(first_user, second_user, token_source_user)
+
+
 
